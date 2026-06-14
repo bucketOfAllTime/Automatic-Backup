@@ -1,0 +1,41 @@
+======================================================================
+                 AUTOMATED BACKUP UTILITY (WINDOWS)
+======================================================================
+
+In its current configuration, this system will:
+  - Back files up to: [Drive_Letter]:\Your_Backup_Folder
+  - Back up folder(s):
+      "[Drive_Letter]:\Path\To\Your\First\Folder"
+      "[Drive_Letter]:\Path\To\Your\Second\Folder"
+  - Keep backups for: [Number_Of_Days] days
+
+----------------------------------------------------------------------
+DRIVE LAYOUT
+----------------------------------------------------------------------
+  - Your_Backup_Folder: 
+      Where the automated timestamped zip files are stored.
+  - BackupSystem: 
+      Contains the application (AutomaticBackup.exe) and configuration. 
+      Do not open this folder unless changing settings or repairing.
+
+----------------------------------------------------------------------
+HOW TO CHANGE SETTINGS (AutomaticBackupConfig.json)
+----------------------------------------------------------------------
+To change paths or the backup age, right-click 'AutomaticBackupConfig.json', 
+choose 'Open with', and select Notepad.
+
+CRITICAL RULES FOR EDITING THE CONFIG FILE ON WINDOWS:
+  1. Paths MUST use double backslashes (Example: "C:\\Users\\Name")
+  2. Text MUST be wrapped in double quotes ("), not single quotes (').
+  3. Do not put a comma after the last item in a list.
+
+----------------------------------------------------------------------
+WINDOWS TASK SCHEDULER DEPLOYMENT
+----------------------------------------------------------------------
+When scheduling this program on a Windows computer, you MUST fill out:
+  - Program/Script:  [Path to BackupSystem]\AutomaticBackup.exe
+  - Start in:        [Path to BackupSystem]  (WITHOUT quotation marks)
+
+  *If 'Start in' is left blank, the app will crash because it won't
+   be able to locate the AutomaticBackupConfig.json file.*
+======================================================================

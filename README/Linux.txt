@@ -1,0 +1,43 @@
+======================================================================
+                  AUTOMATED BACKUP UTILITY (LINUX)
+======================================================================
+
+This folder contains a native Linux standalone application named 
+'AutomaticBackup'. It runs directly without needing Python installed.
+
+In its current configuration, this system will:
+  - Back files up to: /media/username/BackupDrive/Your_Backup_Folder
+  - Back up folder(s):
+      "/home/username/Documents/YourFolder"
+  - Keep backups for: [Number_Of_Days] days
+
+----------------------------------------------------------------------
+HOW TO CHANGE SETTINGS (AutomaticBackupConfig.json)
+----------------------------------------------------------------------
+To change paths or the backup age, open 'AutomaticBackupConfig.json' 
+in your operating system's default text editor (such as gedit, Kate, 
+Mousepad, or Nano).
+
+CRITICAL RULES FOR EDITING THE CONFIG FILE ON LINUX:
+  1. Linux paths use FORWARD slashes. Do NOT use backslashes. 
+     (Example: "/media/username/BackupDrive/BackupsFolder")
+  2. Do NOT use double slashes. Single forward slashes are correct.
+  3. Text MUST be wrapped in double quotes ("), not single quotes (').
+  4. Do not put a comma after the last item in a list.
+
+----------------------------------------------------------------------
+LINUX DEPLOYMENT (AUTOMATION)
+----------------------------------------------------------------------
+Linux uses 'cron' to schedule background tasks.
+
+1. Open your terminal and give the app execution permissions by typing:
+   chmod +x /home/username/BackupSystem/AutomaticBackup
+
+2. Type: crontab -e
+3. Go to the very bottom of the file and add this line to run it every 
+   day at midnight (adjust paths to match where your app is):
+
+   0 0 * * * cd /home/username/BackupSystem && ./AutomaticBackup
+
+4. Save and exit the editor. The backup is now fully automated!
+======================================================================

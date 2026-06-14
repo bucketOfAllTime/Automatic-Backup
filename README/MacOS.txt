@@ -1,0 +1,60 @@
+======================================================================
+                  AUTOMATED BACKUP UTILITY (macOS)
+======================================================================
+
+This folder contains a native macOS standalone application named 
+'AutomaticBackup'. It runs directly without needing Python installed.
+
+In its current configuration, this system will:
+  - Back files up to: /Volumes/YourBackupDrive/Your_Backup_Folder
+  - Back up folder(s):
+      "/Users/YourUsername/Documents/YourFolder"
+  - Keep backups for: [Number_Of_Days] days
+
+----------------------------------------------------------------------
+HOW TO CHANGE SETTINGS (AutomaticBackupConfig.json)
+----------------------------------------------------------------------
+To change paths or the backup age, open 'AutomaticBackupConfig.json' 
+in TextEdit.
+
+CRITICAL RULES FOR EDITING THE CONFIG FILE ON MAC:
+  1. IMPORTANT: In TextEdit, go to the top menu and select Format -> 
+     Make Plain Text. If you do not, TextEdit will break the file.
+  2. Mac paths use FORWARD slashes. Do NOT use backslashes. 
+     (Example: "/Volumes/BackupDrive/BackupsFolder")
+  3. Do NOT use double slashes. Single forward slashes are correct.
+  4. Text MUST be wrapped in double quotes ("), not single quotes (').
+  5. Do not put a comma after the last item in a list.
+
+----------------------------------------------------------------------
+MACOS DEPLOYMENT (AUTOMATION)
+----------------------------------------------------------------------
+Macs use a background scheduling system called 'launchd'. 
+
+1. Create a text file named 'com.jude.backup.plist' in your user directory 
+   under: ~/Library/LaunchAgents/
+2. Paste the following configuration inside that file (adjusting paths):
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <key>com.jude.backup</key>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Volumes/YourBackupDrive/BackupSystem/AutomaticBackup</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>0</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+</dict>
+</plist>
+
+3. Open Terminal and load the task by running:
+   launchctl load ~/Library/LaunchAgents/com.jude.backup.plist
+======================================================================
