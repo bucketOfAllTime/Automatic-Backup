@@ -1,0 +1,8 @@
+{
+	"root_directory": "D:\\BackupsFolder",
+	"backup_age": 7,
+	"sources": [
+		"C:\\Users\\User\\FilePath1",
+		"C:\\Users\\User\\FilePath2"
+	]
+}
